@@ -17,5 +17,11 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
         {
             return await _context.Artists.ToListAsync();
         }
+
+        public async Task CreateArtistAsync(Artist artist)
+        {
+            _context.Artists.Add(artist);
+            await _context.SaveChangesAsync();
+        }
     }
 }

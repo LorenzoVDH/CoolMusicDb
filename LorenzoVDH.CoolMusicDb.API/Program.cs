@@ -1,5 +1,4 @@
 using LorenzoVDH.CoolMusicDb.API.AutoMapperProfiles;
-using LorenzoVDH.CoolMusicDb.API.DTOs;
 using LorenzoVDH.CoolMusicDb.Application;
 using LorenzoVDH.CoolMusicDb.Application.Interfaces.Repositories;
 using LorenzoVDH.CoolMusicDb.Infrastructure.Repositories;

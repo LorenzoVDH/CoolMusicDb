@@ -12,7 +12,8 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            //Seeding is done using the DatabaseSeeder Project
+
             base.OnModelCreating(modelBuilder);
         }
     }

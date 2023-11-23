@@ -1,17 +1,26 @@
 ﻿namespace LorenzoVDH.CoolMusicDb.ApplicationCore.Entities
 {
-    public class Artist : Entity 
+    public class Artist : Entity
     {
-        private string? _pseudonym;
-        public string? Pseudonym
+        //Name the musician is known as publically, can be the same as his or her first name
+        private string? _artistName;
+        public string? ArtistName
         {
-            get { 
-                return _pseudonym; 
+            get
+            {
+                return _artistName;
             }
             set
             {
-                _pseudonym = value;
+                _artistName = value;
             }
+        }
+
+        private string? _description;
+        public string? Description
+        {
+            get => _description;
+            set => _description = value;
         }
 
         private string? _firstName;
@@ -28,6 +37,7 @@
         }
 
         private string? _lastName;
+
         public string? LastName
         {
             get
@@ -40,18 +50,50 @@
             }
         }
 
-        public List<Album> Albums
+        private DateOnly? _dateOfBirth;
+        public DateOnly? DateOfBirth
         {
-            get; set; 
+            get
+            {
+                return _dateOfBirth;
+            }
+            set
+            {
+                _dateOfBirth = value;
+            }
         }
 
-        public Artist(string pseudonym) {
-            Pseudonym = pseudonym;  
-        }
-        public Artist(string firstName, string lastName)
+        private List<Album> albums = new();
+
+        public List<Album> Albums
         {
-            FirstName = firstName;
-            LastName = lastName; 
+            get
+            {
+                return albums;
+            }
+            set
+            {
+                albums = value;
+            }
+        }
+
+        private string? countryCode;
+        public string? CountryCode
+        {
+            get
+            {
+                return countryCode;
+            }
+            set
+            {
+                countryCode = value;
+            }
+        }
+
+
+        public Artist(string artistName)
+        {
+            _artistName = artistName;
         }
     }
 }

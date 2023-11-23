@@ -2,24 +2,28 @@
 {
     public class Album : Entity 
     {
-        public string Name
+        private string? _name;
+        public string? Name
         {
-            get; set;
+            get => _name; set => _name = value;
         }
 
-        public DateTime ReleaseDate
+        private DateOnly? _releaseDate;
+        public DateOnly? ReleaseDate
         {
-            get; set;
-        }
-        
-        public string URL
-        {
-            get; set;
+            get => _releaseDate; set => _releaseDate = value;
         }
 
+        private string? _url;
+        public string? URL
+        {
+            get => _url; set => _url = value;
+        }
+
+        private List<Artist> _artists = new(); 
         public List<Artist> Artists
         {
-            get; set; 
+            get => _artists; set => _artists = value;
         }
     }
 }
