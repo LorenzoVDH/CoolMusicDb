@@ -1,0 +1,11 @@
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/bin/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.deps.json
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/bin/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.dll
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/bin/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.pdb
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.GeneratedMSBuildEditorConfig.editorconfig
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.AssemblyInfoInputs.cache
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.AssemblyInfo.cs
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.csproj.CoreCompileInputs.cache
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.dll
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/Debug/net8.0/refint/LorenzoVDH.CoolMusicDb.ApplicationCore.dll
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/Debug/net8.0/LorenzoVDH.CoolMusicDb.ApplicationCore.pdb
+/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/Debug/net8.0/ref/LorenzoVDH.CoolMusicDb.ApplicationCore.dll

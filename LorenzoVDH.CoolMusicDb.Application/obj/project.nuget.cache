@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "/WhInUfLeGYC7e2RoCkrrH0z9cpWIev9T0DYQ8n8eL9XmflYO1s2JsFN1Ymux71URcni5DgUglOOBmWxD2k1wQ==",
+  "success": true,
+  "projectFilePath": "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.Application/LorenzoVDH.CoolMusicDb.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/lorenzo/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/home/lorenzo/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/home/lorenzo/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "/home/lorenzo/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",
+    "/home/lorenzo/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/home/lorenzo/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "/home/lorenzo/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

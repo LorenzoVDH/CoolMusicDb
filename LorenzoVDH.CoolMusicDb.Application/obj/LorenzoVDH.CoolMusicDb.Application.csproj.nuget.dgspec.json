@@ -1,0 +1,132 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.Application/LorenzoVDH.CoolMusicDb.Application.csproj": {}
+  },
+  "projects": {
+    "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.Application/LorenzoVDH.CoolMusicDb.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.Application/LorenzoVDH.CoolMusicDb.Application.csproj",
+        "projectName": "LorenzoVDH.CoolMusicDb.Application",
+        "projectPath": "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.Application/LorenzoVDH.CoolMusicDb.Application.csproj",
+        "packagesPath": "/home/lorenzo/.nuget/packages/",
+        "outputPath": "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/lorenzo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/LorenzoVDH.CoolMusicDb.ApplicationCore.csproj": {
+                "projectPath": "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/LorenzoVDH.CoolMusicDb.ApplicationCore.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/lorenzo/.dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/LorenzoVDH.CoolMusicDb.ApplicationCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/LorenzoVDH.CoolMusicDb.ApplicationCore.csproj",
+        "projectName": "LorenzoVDH.CoolMusicDb.ApplicationCore",
+        "projectPath": "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/LorenzoVDH.CoolMusicDb.ApplicationCore.csproj",
+        "packagesPath": "/home/lorenzo/.nuget/packages/",
+        "outputPath": "/home/lorenzo/Projects/CoolMusicDb/CoolMusicDb_BackEnd/LorenzoVDH.CoolMusicDb.ApplicationCore/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/lorenzo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/lorenzo/.dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

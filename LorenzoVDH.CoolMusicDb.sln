@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F681EE9-572A-4CE8-919C-5C2B3B6691C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LorenzoVDH.CoolMusicDb.API", "LorenzoVDH.CoolMusicDb.API\LorenzoVDH.CoolMusicDb.API.csproj", "{009565CB-A9AA-4599-8805-A1267F3F60E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LorenzoVDH.CoolMusicDb.Application", "LorenzoVDH.CoolMusicDb.Application\LorenzoVDH.CoolMusicDb.Application.csproj", "{0B507319-07FA-45E1-B28C-DF3CAF9D5FC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LorenzoVDH.CoolMusicDb.ApplicationCore", "LorenzoVDH.CoolMusicDb.ApplicationCore\LorenzoVDH.CoolMusicDb.ApplicationCore.csproj", "{0E73F0D8-58E8-4B34-981D-09BFE2005325}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LorenzoVDH.CoolMusicDb.Infrastructure.Repositories", "LorenzoVDH.CoolMusicDb.Infrastructure.Repositories\LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.csproj", "{4C5CBE50-C035-4947-AEE6-6DC0A6F4302E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LorenzoVDH.CoolMusicDb.DatabaseSeeder", "LorenzoVDH.CoolMusicDb.DatabaseSeeder\LorenzoVDH.CoolMusicDb.DatabaseSeeder.csproj", "{BA26C067-E2AB-433B-9D0E-691E034535C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{009565CB-A9AA-4599-8805-A1267F3F60E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{009565CB-A9AA-4599-8805-A1267F3F60E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{009565CB-A9AA-4599-8805-A1267F3F60E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{009565CB-A9AA-4599-8805-A1267F3F60E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B507319-07FA-45E1-B28C-DF3CAF9D5FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B507319-07FA-45E1-B28C-DF3CAF9D5FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B507319-07FA-45E1-B28C-DF3CAF9D5FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B507319-07FA-45E1-B28C-DF3CAF9D5FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E73F0D8-58E8-4B34-981D-09BFE2005325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E73F0D8-58E8-4B34-981D-09BFE2005325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E73F0D8-58E8-4B34-981D-09BFE2005325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E73F0D8-58E8-4B34-981D-09BFE2005325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C5CBE50-C035-4947-AEE6-6DC0A6F4302E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C5CBE50-C035-4947-AEE6-6DC0A6F4302E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C5CBE50-C035-4947-AEE6-6DC0A6F4302E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C5CBE50-C035-4947-AEE6-6DC0A6F4302E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA26C067-E2AB-433B-9D0E-691E034535C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA26C067-E2AB-433B-9D0E-691E034535C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA26C067-E2AB-433B-9D0E-691E034535C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA26C067-E2AB-433B-9D0E-691E034535C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{009565CB-A9AA-4599-8805-A1267F3F60E2} = {3F681EE9-572A-4CE8-919C-5C2B3B6691C8}
+		{0B507319-07FA-45E1-B28C-DF3CAF9D5FC7} = {3F681EE9-572A-4CE8-919C-5C2B3B6691C8}
+		{0E73F0D8-58E8-4B34-981D-09BFE2005325} = {3F681EE9-572A-4CE8-919C-5C2B3B6691C8}
+		{4C5CBE50-C035-4947-AEE6-6DC0A6F4302E} = {3F681EE9-572A-4CE8-919C-5C2B3B6691C8}
+		{BA26C067-E2AB-433B-9D0E-691E034535C2} = {3F681EE9-572A-4CE8-919C-5C2B3B6691C8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BDD1E75-6A40-451B-9890-FFE9B7B33714}
+	EndGlobalSection
+EndGlobal
