@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Migrations
 {
     [DbContext(typeof(CoolMusicDbContext))]
-    [Migration("20231123194905_ArtistDescriptionDateOfBirth")]
-    partial class ArtistDescriptionDateOfBirth
+    [Migration("20231123231644_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,8 +51,8 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("ReleaseDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly?>("ReleaseDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("URL")
                         .HasColumnType("text");
@@ -70,6 +70,12 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ArtistName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CountryCode")
+                        .HasColumnType("CHAR(2)");
+
                     b.Property<DateOnly?>("DateOfBirth")
                         .HasColumnType("date");
 
@@ -80,9 +86,6 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Pseudonym")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

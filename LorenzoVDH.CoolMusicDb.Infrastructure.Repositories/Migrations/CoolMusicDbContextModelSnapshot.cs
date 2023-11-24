@@ -70,6 +70,9 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Migrations
                     b.Property<string>("ArtistName")
                         .HasColumnType("text");
 
+                    b.Property<string>("CountryCode")
+                        .HasColumnType("CHAR(2)");
+
                     b.Property<DateOnly?>("DateOfBirth")
                         .HasColumnType("date");
 

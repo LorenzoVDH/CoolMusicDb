@@ -6,25 +6,22 @@ Console.WriteLine("Begin Seeding...");
 
 var dbContextOptions = new DbContextOptionsBuilder<CoolMusicDbContext>()
     .UseNpgsql("Server=localhost;Port=5432;Database=CoolMusicDb;User Id=postgres;Password=easilyhackablepassword;")
-    .Options; 
+    .Options;
 using var dbContext = new CoolMusicDbContext(dbContextOptions);
-
-//Remove all artists so we start with a clean test database 
-var allArtists = dbContext.Artists.ToList();
-dbContext.Artists.RemoveRange(allArtists);
 
 //Seed the artists with their albums 
 dbContext.Artists.Add(
     new Artist("Taylor Swift")
     {
         FirstName = "Taylor",
-        LastName = "Swift", 
-        Description = "Taylor Alison Swift is an American singer-songwriter. Recognized for her songwriting, musical versatility, " + 
-                      "artistic reinventions, and influence on the music industry, she is a prominent cultural figure of the 21st century.", 
-        DateOfBirth = new DateOnly(1989,12,13),
+        LastName = "Swift",
+        CountryCode = "US",
+        Description = "Taylor Alison Swift is an American singer-songwriter. Recognized for her songwriting, musical versatility, " +
+                      "artistic reinventions, and influence on the music industry, she is a prominent cultural figure of the 21st century.",
+        DateOfBirth = new DateOnly(1989, 12, 13),
         Albums = new List<Album>() {
             new Album() { ReleaseDate = new DateOnly(2006, 10, 24), Name = "Taylor Swift",  URL = "https://example.com/taylorswift" },
-            new Album() { ReleaseDate = new DateOnly(2008, 11, 11),   Name = "Fearless",  URL = "https://example.com/fearless" },
+            new Album() { ReleaseDate = new DateOnly(2008, 11, 11), Name = "Fearless",  URL = "https://example.com/fearless" },
             new Album() { ReleaseDate = new DateOnly(2010, 10, 25), Name = "Speak Now",  URL = "https://example.com/speaknow" },
         }
     });
@@ -33,9 +30,10 @@ dbContext.Artists.Add(
     new Artist("Ed Sheeran")
     {
         FirstName = "Ed",
-        LastName = "Sheeran", 
-        Description = "Edward Christopher Sheeran MBE is an English singer-songwriter. Born in Halifax, West Yorkshire, and raised " + 
-                      "in Framlingham, Suffolk, he began writing songs around the age of eleven. In early 2011, Sheeran independently " + 
+        LastName = "Sheeran",
+        CountryCode = "UK",
+        Description = "Edward Christopher Sheeran MBE is an English singer-songwriter. Born in Halifax, West Yorkshire, and raised " +
+                      "in Framlingham, Suffolk, he began writing songs around the age of eleven. In early 2011, Sheeran independently " +
                       "released the extended play No. 5 Collaborations Project. He signed with Asylum Records the same year.",
         DateOfBirth = new DateOnly(1991, 2, 17),
         Albums = new List<Album>() {
@@ -49,11 +47,12 @@ dbContext.Artists.Add(
     new Artist("Beyoncé")
     {
         FirstName = "Beyoncé",
-        LastName = "Knowles", 
-        Description = "Beyoncé Giselle Knowles-Carter is an American singer, songwriter and businesswoman. Known as \"Queen Bey\"," + 
-                      "she has been recognized for her boundary-pushing artistry, vocals, and performances. Named one of the greatest " + 
-                      "singers of all time by Rolling Stone, her contributions to music and visual media and her concert performances have " + 
+        LastName = "Knowles",
+        Description = "Beyoncé Giselle Knowles-Carter is an American singer, songwriter and businesswoman. Known as \"Queen Bey\"," +
+                      "she has been recognized for her boundary-pushing artistry, vocals, and performances. Named one of the greatest " +
+                      "singers of all time by Rolling Stone, her contributions to music and visual media and her concert performances have " +
                       "led her to become a prominent cultural icon of the 21st century.",
+        CountryCode = "US",
         DateOfBirth = new DateOnly(1981, 9, 4),
         Albums = new List<Album>() {
             new Album() { ReleaseDate = new DateOnly(2003, 6, 24) , Name = "Dangerously In Love",  URL = "https://example.com/beyonce-dangerouslyinlove" },
@@ -66,10 +65,11 @@ dbContext.Artists.Add(
     new Artist("Adele")
     {
         FirstName = "Adele",
-        LastName = "Laurie Blue Adkins", 
-        Description = "Adele Laurie Blue Adkins, known mononymously as Adele, is an English singer-songwriter. She is known for her mezzo-soprano" + 
-                      "vocals and sentimental songwriting. Adele has received numerous accolades including 16 Grammy Awards, 12 Brit Awards (including " + 
+        LastName = "Laurie Blue Adkins",
+        Description = "Adele Laurie Blue Adkins, known mononymously as Adele, is an English singer-songwriter. She is known for her mezzo-soprano" +
+                      "vocals and sentimental songwriting. Adele has received numerous accolades including 16 Grammy Awards, 12 Brit Awards (including " +
                       "three for British Album of the Year), an Academy Award, a Primetime Emmy Award, and a Golden Globe Award.",
+        CountryCode = "UK",
         DateOfBirth = new DateOnly(1988, 5, 5),
         Albums = new List<Album>() {
             new Album() { ReleaseDate = new DateOnly(2008, 1, 28) , Name = "19",  URL = "https://example.com/adele-19" },
@@ -82,11 +82,12 @@ dbContext.Artists.Add(
     new Artist("Bruno Mars")
     {
         FirstName = "Peter",
-        LastName = "Gene Hernandez", 
-        Description = "Peter Gene Hernandez, known professionally as Bruno Mars, is an American singer-songwriter and record producer. " + 
-                      "He is known for his stage performances, retro showmanship, and for performing in a wide range of musical styles, " + 
+        LastName = "Gene Hernandez",
+        Description = "Peter Gene Hernandez, known professionally as Bruno Mars, is an American singer-songwriter and record producer. " +
+                      "He is known for his stage performances, retro showmanship, and for performing in a wide range of musical styles, " +
                       "including pop, R&B, funk, soul, reggae, disco, and rock.",
-        DateOfBirth = new DateOnly(1985, 9, 8), 
+        CountryCode = "US",
+        DateOfBirth = new DateOnly(1985, 9, 8),
         Albums = new List<Album>() {
             new Album() { ReleaseDate = new DateOnly(2010, 10, 4) , Name = "Doo-Wops & Hooligans",  URL = "https://example.com/brunomars-doowopsandhooligans" },
             new Album() { ReleaseDate = new DateOnly(2012, 12, 7) ,   Name = "Unorthodox Jukebox",  URL = "https://example.com/brunomars-unorthodoxjukebox" },
@@ -98,10 +99,11 @@ dbContext.Artists.Add(
     new Artist("Rihanna")
     {
         FirstName = "Robyn",
-        LastName = "Rihanna Fenty", 
-        Description = "Robyn Rihanna Fenty is a Barbadian singer, songwriter, businesswoman, and actress. She is widely regarded as one " + 
+        LastName = "Rihanna Fenty",
+        Description = "Robyn Rihanna Fenty is a Barbadian singer, songwriter, businesswoman, and actress. She is widely regarded as one " +
                       "of the most prominent singers of the 21st century. ",
-        DateOfBirth = new DateOnly(1988, 2, 20), 
+        CountryCode = "US",
+        DateOfBirth = new DateOnly(1988, 2, 20),
         Albums = new List<Album>() {
             new Album() { ReleaseDate = new DateOnly(2005, 8, 30), Name = "Music of the Sun",  URL = "https://example.com/rihanna-musicofthesun" },
             new Album() { ReleaseDate = new DateOnly(2007, 6, 5) ,   Name = "Good Girl Gone Bad",  URL = "https://example.com/rihanna-goodgirlgonebad" },
@@ -112,4 +114,4 @@ dbContext.Artists.Add(
 
 dbContext.SaveChanges();
 
-Console.WriteLine("Seeding ended!"); 
+Console.WriteLine("Seeding ended!");

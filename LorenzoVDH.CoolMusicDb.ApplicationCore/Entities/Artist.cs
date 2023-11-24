@@ -1,4 +1,6 @@
-﻿namespace LorenzoVDH.CoolMusicDb.ApplicationCore.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LorenzoVDH.CoolMusicDb.ApplicationCore.Entities
 {
     public class Artist : Entity
     {
@@ -77,6 +79,7 @@
             }
         }
 
+        [Length(2, 2, ErrorMessage = "A CountryCode must be two characters long")]
         private string? countryCode;
         public string? CountryCode
         {
@@ -89,7 +92,6 @@
                 countryCode = value;
             }
         }
-
 
         public Artist(string artistName)
         {
