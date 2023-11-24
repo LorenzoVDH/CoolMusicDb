@@ -6,9 +6,9 @@ using LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("DevConnection"); 
+var connectionString = builder.Configuration.GetConnectionString("DevConnection");
 
-builder.Services.AddDbContext<CoolMusicDbContext>( options => options.UseNpgsql(connectionString) );
+builder.Services.AddDbContext<CoolMusicDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,6 +21,7 @@ builder.Services.AddInfrastructure();
 
 //Repositories
 builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 
 
 var app = builder.Build();

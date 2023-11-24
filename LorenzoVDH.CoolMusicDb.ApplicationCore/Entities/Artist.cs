@@ -80,16 +80,16 @@ namespace LorenzoVDH.CoolMusicDb.ApplicationCore.Entities
         }
 
         [Length(2, 2, ErrorMessage = "A CountryCode must be two characters long")]
-        private string? countryCode;
+        private string? _countryCode;
         public string? CountryCode
         {
             get
             {
-                return countryCode;
+                return _countryCode;
             }
             set
             {
-                countryCode = value;
+                _countryCode = value?.ToUpper();
             }
         }
 
