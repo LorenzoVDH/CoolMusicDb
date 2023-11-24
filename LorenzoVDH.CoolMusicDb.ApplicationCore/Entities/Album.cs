@@ -1,6 +1,6 @@
 ﻿namespace LorenzoVDH.CoolMusicDb.ApplicationCore.Entities
 {
-    public class Album : Entity 
+    public class Album : Entity
     {
         private string? _name;
         public string? Name
@@ -20,7 +20,7 @@
             get => _url; set => _url = value;
         }
 
-        private List<Artist> _artists = new(); 
+        private List<Artist> _artists = new();
         public List<Artist> Artists
         {
             get => _artists; set => _artists = value;

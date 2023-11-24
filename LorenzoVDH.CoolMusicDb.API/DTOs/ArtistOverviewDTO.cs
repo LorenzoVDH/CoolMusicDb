@@ -2,6 +2,7 @@
 {
     public class ArtistOverviewDTO
     {
+        public int Id { get; set; }
         public string? ArtistName { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

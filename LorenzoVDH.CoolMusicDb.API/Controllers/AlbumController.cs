@@ -35,9 +35,16 @@ public class AlbumController : ControllerBase
         return Ok(albumDTOs);
     }
 
-    // [HttpGet]
-    // public async Task<IActionResult> GetAlbumsByArtistId(int artistId)
-    // {
-    //     return Ok();
-    // }
+    [HttpGet("ByArtist")]
+    public async Task<IActionResult> GetAlbumsByArtist(int artistId)
+    {
+        List<Album> albums = await _mediator.Send(new GetAlbumsByArtistQuery(artistId));
+
+        if (albums.Count == 0)
+            return NoContent();
+
+        var albumDTOs = _mapper.Map<List<AlbumOverviewDTO>>(albums);
+
+        return Ok(albumDTOs);
+    }
 }

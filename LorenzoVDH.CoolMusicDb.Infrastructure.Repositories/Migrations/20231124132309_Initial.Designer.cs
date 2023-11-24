@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Migrations
 {
     [DbContext(typeof(CoolMusicDbContext))]
-    [Migration("20231123231644_Initial")]
+    [Migration("20231124132309_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

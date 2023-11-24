@@ -15,8 +15,20 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
 
         public async Task<List<Album>> GetAllAlbumsAsync()
         {
-            var albums = await _context.Albums.Include(a => a.Artists)
-                                              .ToListAsync();
+            var albums =
+                await _context.Albums
+                    .Include(alb => alb.Artists)
+                    .ToListAsync();
+
+            return albums;
+        }
+
+        public async Task<List<Album>> GetAlbumsByArtistIdAsync(int artistId)
+        {
+            var albums =
+                await _context.Albums.Where(alb => alb.Artists.Any(a => a.Id == artistId))
+                                                              .Include(alb => alb.Artists)
+                                                              .ToListAsync();
 
             return albums;
         }

@@ -66,7 +66,6 @@ namespace LorenzoVDH.CoolMusicDb.ApplicationCore.Entities
         }
 
         private List<Album> albums = new();
-
         public List<Album> Albums
         {
             get

@@ -19,4 +19,3 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories
         }
     }
 }
-
