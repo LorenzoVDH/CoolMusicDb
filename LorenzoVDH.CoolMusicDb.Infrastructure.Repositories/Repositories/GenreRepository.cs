@@ -31,4 +31,21 @@ public class GenreRepository : IGenreRepository
         _context.Genres.Add(genre);
         await _context.SaveChangesAsync();
     }
+
+    public async Task CreateGenreParentChildRelationship(int parentId, int childId)
+    {
+        Genre parentGenre = await _context.Genres.Where(g => g.Id == parentId).FirstAsync();
+
+        if (parentGenre == null)
+            throw new InvalidOperationException("Parent genre not found!");
+
+        Genre childGenre = await _context.Genres.Where(g => g.Id == childId).FirstAsync();
+
+        if (childGenre == null)
+            throw new InvalidOperationException("Child genre not found!");
+
+        parentGenre.SubGenres.Add(childGenre);
+
+        await _context.SaveChangesAsync();
+    }
 }

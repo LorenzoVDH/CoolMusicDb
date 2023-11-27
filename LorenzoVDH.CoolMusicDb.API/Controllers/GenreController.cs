@@ -73,4 +73,29 @@ public class GenreController : ControllerBase
             return StatusCode(500, $"An error occurred while creating the genre: {ex.Message}");
         }
     }
+
+    [HttpPost("ParentChildRelationship")]
+    public async Task<IActionResult> CreateGenreParentChildRelationship([FromBody] GenreCreateParentChildRelationshipDTO genreParentChildRelationship)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            if (genreParentChildRelationship == null)
+                return BadRequest("No Genre Parent-Child relationship provided");
+
+            await _mediator.Send(new CreateGenreParentChildRelationshipCommand(genreParentChildRelationship.ParentId,
+                                                                               genreParentChildRelationship.ChildId));
+
+            return Ok($"Genre Parent-Child relationship between parent {genreParentChildRelationship.ParentId}" +
+                      $"and child {genreParentChildRelationship.ChildId} created succesfully!");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred while creating the genre relationship: {ex.Message}");
+        }
+    }
 }
