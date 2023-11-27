@@ -1,5 +1,7 @@
 using AutoMapper;
 using LorenzoVDH.CoolMusicDb.API.DTOs;
+using LorenzoVDH.CoolMusicDb.API.DTOs.Albums;
+using LorenzoVDH.CoolMusicDb.Application.Features.Albums.Commands;
 using LorenzoVDH.CoolMusicDb.Application.Features.Albums.Queries;
 using LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
 using MediatR;
@@ -46,5 +48,30 @@ public class AlbumController : ControllerBase
         var albumDTOs = _mapper.Map<List<AlbumOverviewDTO>>(albums);
 
         return Ok(albumDTOs);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateAlbum(AlbumCreateDTO album)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            if (album == null)
+                return BadRequest("No album provided");
+
+            var newAlbum = _mapper.Map<Album>(album);
+
+            await _mediator.Send(new CreateAlbumCommand(newAlbum));
+
+            return Ok($"Album '{newAlbum.Name}' created successfully.");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred while creating the album: {ex.Message}");
+        }
     }
 }

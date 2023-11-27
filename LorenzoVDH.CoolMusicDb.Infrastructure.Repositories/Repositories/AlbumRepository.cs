@@ -32,5 +32,11 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
 
             return albums;
         }
+
+        public async Task CreateAlbumAsync(Album album)
+        {
+            _context.Albums.Add(album);
+            await _context.SaveChangesAsync();
+        }
     }
 }

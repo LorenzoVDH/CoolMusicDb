@@ -37,12 +37,6 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             return Ok(artistDTOs);
         }
 
-        /*
-
-        public async Task<IActionResult> GetArtistById(){}
-
-        */
-
         //Create
         [HttpPost]
         public async Task<IActionResult> CreateArtist([FromBody] ArtistCreateDTO artist)
