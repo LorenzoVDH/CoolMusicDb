@@ -26,10 +26,11 @@ public class GenreRepository : IGenreRepository
         return subGenres;
     }
 
-    public async Task CreateGenreAsync(Genre genre)
+    public async Task<Genre> CreateGenreAsync(Genre genre)
     {
         _context.Genres.Add(genre);
         await _context.SaveChangesAsync();
+        return genre;
     }
 
     public async Task CreateGenreParentChildRelationship(int parentId, int childId)

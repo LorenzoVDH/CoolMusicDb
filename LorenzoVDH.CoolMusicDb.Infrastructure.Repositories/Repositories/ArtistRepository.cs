@@ -6,7 +6,7 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
 {
     public class ArtistRepository : IArtistRepository
     {
-        protected readonly CoolMusicDbContext _context; 
+        protected readonly CoolMusicDbContext _context;
 
         public ArtistRepository(CoolMusicDbContext context)
         {
@@ -18,10 +18,11 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
             return await _context.Artists.ToListAsync();
         }
 
-        public async Task CreateArtistAsync(Artist artist)
+        public async Task<Artist> CreateArtistAsync(Artist artist)
         {
             _context.Artists.Add(artist);
             await _context.SaveChangesAsync();
+            return artist;
         }
     }
 }

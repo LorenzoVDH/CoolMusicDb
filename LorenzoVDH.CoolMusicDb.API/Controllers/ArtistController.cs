@@ -5,6 +5,7 @@ using AutoMapper;
 using LorenzoVDH.CoolMusicDb.API.DTOs;
 using LorenzoVDH.CoolMusicDb.Application.Features.Artists.Queries;
 using LorenzoVDH.CoolMusicDb.Application.Features.Artists.Commands;
+using LorenzoVDH.CoolMusicDb.API.DTOs.Artists;
 
 namespace LorenzoVDH.CoolMusicDb.API.Controllers
 {
@@ -51,11 +52,11 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
                 if (artist == null)
                     return BadRequest("No artist provided");
 
-                var newArtist = _mapper.Map<Artist>(artist);
+                var artistToCreate = _mapper.Map<Artist>(artist);
+                var createdArtist = await _mediator.Send(new CreateArtistCommand(artistToCreate));
+                var dto = _mapper.Map<ArtistDetailDTO>(createdArtist);
 
-                await _mediator.Send(new CreateArtistCommand(newArtist));
-
-                return Ok($"Artist '{newArtist.ArtistName}' created successfully.");
+                return Ok(dto);
             }
             catch (Exception ex)
             {

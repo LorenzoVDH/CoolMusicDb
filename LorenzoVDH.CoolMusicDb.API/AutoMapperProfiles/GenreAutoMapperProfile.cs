@@ -10,5 +10,6 @@ public class GenreAutoMapperProfile : Profile
     {
         CreateMap<Genre, GenreOverviewDTO>();
         CreateMap<GenreCreateDTO, Genre>();
+        CreateMap<Genre, GenreDetailDTO>();
     }
 }

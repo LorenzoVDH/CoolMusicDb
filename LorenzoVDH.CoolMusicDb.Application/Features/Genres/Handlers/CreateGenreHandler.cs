@@ -1,10 +1,11 @@
 using LorenzoVDH.CoolMusicDb.Application.Features.Genres.Commands;
 using LorenzoVDH.CoolMusicDb.Application.Interfaces.Repositories;
+using LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
 using MediatR;
 
 namespace LorenzoVDH.CoolMusicDb.Application.Features.Genres.Handlers;
 
-public class CreateGenreHandler : IRequestHandler<CreateGenreCommand>
+public class CreateGenreHandler : IRequestHandler<CreateGenreCommand, Genre>
 {
     private readonly IGenreRepository _genreRepository;
 
@@ -13,8 +14,8 @@ public class CreateGenreHandler : IRequestHandler<CreateGenreCommand>
         _genreRepository = genreRepository;
     }
 
-    public async Task Handle(CreateGenreCommand command, CancellationToken cancellationToken)
+    public async Task<Genre> Handle(CreateGenreCommand command, CancellationToken cancellationToken)
     {
-        await _genreRepository.CreateGenreAsync(command.Genre);
+        return await _genreRepository.CreateGenreAsync(command.Genre);
     }
 }

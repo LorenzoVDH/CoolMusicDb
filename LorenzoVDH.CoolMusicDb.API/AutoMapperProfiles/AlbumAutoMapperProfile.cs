@@ -11,6 +11,7 @@ namespace LorenzoVDH.CoolMusicDb.API.AutoMapperProfiles
         {
             CreateMap<Album, AlbumOverviewDTO>();
             CreateMap<AlbumCreateDTO, Album>();
+            CreateMap<Album, AlbumDetailDTO>();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LorenzoVDH.CoolMusicDb.API.DTOs;
+using LorenzoVDH.CoolMusicDb.API.DTOs.Artists;
 using LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
 
 namespace LorenzoVDH.CoolMusicDb.API.AutoMapperProfiles
@@ -11,6 +12,7 @@ namespace LorenzoVDH.CoolMusicDb.API.AutoMapperProfiles
             CreateMap<Artist, ArtistOverviewDTO>();
             CreateMap<ArtistCreateDTO, Artist>();
             CreateMap<Artist, ArtistSimpleDTO>();
+            CreateMap<Artist, ArtistDetailDTO>();
         }
     }
 }

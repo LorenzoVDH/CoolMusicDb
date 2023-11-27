@@ -63,11 +63,11 @@ public class AlbumController : ControllerBase
             if (album == null)
                 return BadRequest("No album provided");
 
-            var newAlbum = _mapper.Map<Album>(album);
+            var albumToCreate = _mapper.Map<Album>(album);
+            var createdAlbum = await _mediator.Send(new CreateAlbumCommand(albumToCreate));
+            var dto = _mapper.Map<AlbumDetailDTO>(createdAlbum);
 
-            await _mediator.Send(new CreateAlbumCommand(newAlbum));
-
-            return Ok($"Album '{newAlbum.Name}' created successfully.");
+            return Ok(dto);
         }
         catch (Exception ex)
         {

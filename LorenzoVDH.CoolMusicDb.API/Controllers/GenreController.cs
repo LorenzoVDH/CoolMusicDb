@@ -62,11 +62,11 @@ public class GenreController : ControllerBase
             if (genre == null)
                 return BadRequest("No genre provided");
 
-            var newGenre = _mapper.Map<Genre>(genre);
+            var genreToBeAdded = _mapper.Map<Genre>(genre);
+            var addedGenre = await _mediator.Send(new CreateGenreCommand(genreToBeAdded));
+            var dto = _mapper.Map<GenreDetailDTO>(addedGenre);
 
-            await _mediator.Send(new CreateGenreCommand(newGenre));
-
-            return Ok($"Genre '{newGenre.Name}' created successfully.");
+            return Ok(dto);
         }
         catch (Exception ex)
         {
