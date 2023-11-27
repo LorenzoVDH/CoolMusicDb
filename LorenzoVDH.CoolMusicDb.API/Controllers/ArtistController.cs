@@ -10,7 +10,7 @@ using LorenzoVDH.CoolMusicDb.API.DTOs.Artists;
 namespace LorenzoVDH.CoolMusicDb.API.Controllers
 {
     [ApiController]
-    [Route("Artists")]
+    [Route("[controller]")]
     public class ArtistController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -24,8 +24,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             _logger = logger;
         }
 
-        //Read ... todo: implement pagination 
-        [HttpGet]
+        [HttpGet("All")]
         public async Task<IActionResult> GetAllArtists()
         {
             List<Artist> artists = await _mediator.Send(new GetAllArtistsQuery());

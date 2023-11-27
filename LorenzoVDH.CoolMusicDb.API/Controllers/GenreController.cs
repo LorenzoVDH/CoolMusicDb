@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LorenzoVDH.CoolMusicDb.API.Controllers;
 
 [ApiController]
-[Route("Genres")]
+[Route("[controller]")]
 public class GenreController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -23,7 +23,7 @@ public class GenreController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet]
+    [HttpGet("MainGenres")]
     public async Task<IActionResult> GetMainGenres()
     {
         List<Genre> genres = await _mediator.Send(new GetMainGenresQuery());

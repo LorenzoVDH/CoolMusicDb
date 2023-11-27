@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LorenzoVDH.CoolMusicDb.API.Controllers;
 
 [ApiController]
-[Route("Albums")]
+[Route("[controller]")]
 public class AlbumController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -24,7 +24,7 @@ public class AlbumController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet]
+    [HttpGet("All")]
     public async Task<IActionResult> GetAllAlbums()
     {
         List<Album> albums = await _mediator.Send(new GetAllAlbumsQuery());
@@ -75,27 +75,62 @@ public class AlbumController : ControllerBase
         }
     }
 
-    [HttpPost("AddArtist")]
-    public async Task<IActionResult> AddArtistToAlbum(AlbumArtistRelationshipDTO albumArtistRelationship)
+    [HttpPost("Artist")]
+    public async Task<IActionResult> AddArtistToAlbum(AlbumArtistRelationshipDTO albumArtistRelationshipDto)
     {
         if (!ModelState.IsValid)
-        {
             return BadRequest(ModelState);
-        }
 
         try
         {
-            if (albumArtistRelationship == null)
+            if (albumArtistRelationshipDto == null)
                 return BadRequest("No albumArtistRelationship provided   ");
 
-            await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumArtistRelationship.albumId,
-                                                                          albumArtistRelationship.artistId));
+            await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumArtistRelationshipDto.albumId,
+                                                                          albumArtistRelationshipDto.artistId));
 
-            return Ok($"Artist {albumArtistRelationship.artistId} has been added to the album {albumArtistRelationship.albumId}");
+            return Ok($"Artist {albumArtistRelationshipDto.artistId} has been added to the album {albumArtistRelationshipDto.albumId}");
         }
         catch (Exception ex)
         {
             return StatusCode(500, $"An error occured while creating the Album-Artist relationship: {ex.Message}");
+        }
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateAlbum(AlbumUpdateDTO albumInDto)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        try
+        {
+            if (albumInDto == null)
+                return BadRequest("No album provided");
+
+            var albumToUpdate = _mapper.Map<Album>(albumInDto);
+            var updatedAlbum = await _mediator.Send(new UpdateAlbumCommand(albumToUpdate));
+            var albumOutDto = _mapper.Map<AlbumDetailDTO>(updatedAlbum);
+
+            return Ok(albumOutDto);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while updating the album: {ex.Message}");
+        }
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteAlbum(int albumId)
+    {
+        try
+        {
+            await _mediator.Send(new DeleteAlbumCommand(albumId));
+            return Ok($"Album {albumId} has been removed.");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while deleting album #{ex.Message} ");
         }
     }
 }
