@@ -38,5 +38,21 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
             _context.Albums.Add(album);
             await _context.SaveChangesAsync();
         }
+
+        public async Task CreateAlbumArtistRelationshipAsync(int albumId, int artistId)
+        {
+            var album = await _context.Albums.Where(alb => alb.Id == albumId).FirstAsync();
+
+            if (album == null)
+                throw new InvalidOperationException("Album is not found!");
+
+            var artist = await _context.Artists.Where(art => art.Id == artistId).FirstAsync();
+
+            if (artist == null)
+                throw new InvalidOperationException("Artist is not found!");
+
+            album.Artists.Add(artist);
+            await _context.SaveChangesAsync();
+        }
     }
 }

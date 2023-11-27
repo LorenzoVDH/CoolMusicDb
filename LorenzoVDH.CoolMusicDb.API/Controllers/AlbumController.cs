@@ -74,4 +74,28 @@ public class AlbumController : ControllerBase
             return StatusCode(500, $"An error occurred while creating the album: {ex.Message}");
         }
     }
+
+    [HttpPost("AddArtist")]
+    public async Task<IActionResult> AddArtistToAlbum(AlbumArtistRelationshipDTO albumArtistRelationship)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            if (albumArtistRelationship == null)
+                return BadRequest("No albumArtistRelationship provided   ");
+
+            await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumArtistRelationship.albumId,
+                                                                          albumArtistRelationship.artistId));
+
+            return Ok($"Artist {albumArtistRelationship.artistId} has been added to the album {albumArtistRelationship.albumId}");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while creating the Album-Artist relationship: {ex.Message}");
+        }
+    }
 }
