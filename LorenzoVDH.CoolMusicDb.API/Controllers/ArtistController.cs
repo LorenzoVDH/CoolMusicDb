@@ -9,7 +9,7 @@ using LorenzoVDH.CoolMusicDb.Application.Features.Artists.Commands;
 namespace LorenzoVDH.CoolMusicDb.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Artists")]
     public class ArtistController : ControllerBase
     {
         private readonly IMediator _mediator;

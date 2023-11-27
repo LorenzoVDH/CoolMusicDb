@@ -9,6 +9,7 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories
         public CoolMusicDbContext(DbContextOptions<CoolMusicDbContext> options) : base(options) { }
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

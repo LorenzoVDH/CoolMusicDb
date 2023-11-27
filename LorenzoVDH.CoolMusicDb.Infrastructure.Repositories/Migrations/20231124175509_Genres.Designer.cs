@@ -3,6 +3,7 @@ using System;
 using LorenzoVDH.CoolMusicDb.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Migrations
 {
     [DbContext(typeof(CoolMusicDbContext))]
-    partial class CoolMusicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231124175509_Genres")]
+    partial class Genres
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,6 +123,7 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");

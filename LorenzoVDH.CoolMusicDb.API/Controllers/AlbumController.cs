@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LorenzoVDH.CoolMusicDb.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("Albums")]
 public class AlbumController : ControllerBase
 {
     private readonly IMediator _mediator;

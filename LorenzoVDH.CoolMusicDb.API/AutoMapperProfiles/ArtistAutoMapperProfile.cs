@@ -10,7 +10,7 @@ namespace LorenzoVDH.CoolMusicDb.API.AutoMapperProfiles
         {
             CreateMap<Artist, ArtistOverviewDTO>();
             CreateMap<ArtistCreateDTO, Artist>();
-            CreateMap<Artist, ArtistSimpleDTO>().ReverseMap();
+            CreateMap<Artist, ArtistSimpleDTO>();
         }
     }
 }
