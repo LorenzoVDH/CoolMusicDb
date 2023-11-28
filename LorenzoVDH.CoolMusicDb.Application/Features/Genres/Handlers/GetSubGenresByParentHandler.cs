@@ -16,6 +16,6 @@ public class GetSubGenresByParentHandler : IRequestHandler<GetSubGenresByParentQ
 
     public Task<List<Genre>> Handle(GetSubGenresByParentQuery request, CancellationToken cancellationToken)
     {
-        return _genreRepository.GetSubGenresByParentId(request.GenreId);
+        return _genreRepository.GetSubGenresByParentIdAsync(request.GenreId);
     }
 }

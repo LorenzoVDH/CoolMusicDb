@@ -5,7 +5,7 @@ namespace LorenzoVDH.CoolMusicDb.Application.Interfaces.Repositories;
 public interface IGenreRepository
 {
     Task<List<Genre>> GetMainGenresAsync();
-    Task<List<Genre>> GetSubGenresByParentId(int genreId);
+    Task<List<Genre>> GetSubGenresByParentIdAsync(int genreId);
     Task<Genre> CreateGenreAsync(Genre genre);
-    Task CreateGenreParentChildRelationship(int parentGenreId, int childGenreId);
+    Task CreateGenreParentChildRelationshipAsync(int parentGenreId, int childGenreId);
 }

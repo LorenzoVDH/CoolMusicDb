@@ -10,5 +10,6 @@ namespace LorenzoVDH.CoolMusicDb.Application.Interfaces.Repositories
         Task CreateAlbumArtistRelationshipAsync(int albumId, int artistId);
         Task<Album> UpdateAlbumAsync(Album album);
         Task DeleteAlbumAsync(int albumId);
+        Task RemoveArtistFromAlbumAsync(int artistId, int albumId);
     }
 }

@@ -13,6 +13,6 @@ public class CreateGenreParentChildRelationshipHandler : IRequestHandler<CreateG
     }
     public async Task Handle(CreateGenreParentChildRelationshipCommand command, CancellationToken cancellationToken)
     {
-        await _genreRepository.CreateGenreParentChildRelationship(command.ParentGenreId, command.ChildGenreId);
+        await _genreRepository.CreateGenreParentChildRelationshipAsync(command.ParentGenreId, command.ChildGenreId);
     }
 }

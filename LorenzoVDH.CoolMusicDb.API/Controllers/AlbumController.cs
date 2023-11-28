@@ -97,6 +97,28 @@ public class AlbumController : ControllerBase
         }
     }
 
+    [HttpDelete("Artist")]
+    public async Task<IActionResult> RemoveArtistFromAlbum(AlbumArtistRelationshipDTO albumArtistRelationshipDto)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        try
+        {
+            if (albumArtistRelationshipDto == null)
+                return BadRequest("No albumArtistRelationship provided   ");
+
+            await _mediator.Send(new RemoveArtistFromAlbumCommand(albumArtistRelationshipDto.albumId,
+                                                                  albumArtistRelationshipDto.artistId));
+
+            return Ok($"Artist {albumArtistRelationshipDto.artistId} has been removed from the album {albumArtistRelationshipDto.albumId}");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while removing the Artist from the Album: {ex.Message}");
+        }
+    }
+
     [HttpPut]
     public async Task<IActionResult> UpdateAlbum(AlbumUpdateDTO albumInDto)
     {

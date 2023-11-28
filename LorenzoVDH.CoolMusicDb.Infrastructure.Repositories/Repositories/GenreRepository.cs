@@ -18,7 +18,7 @@ public class GenreRepository : IGenreRepository
         return await _context.Genres.Where(g => g.ParentGenres.Count == 0).Include(gg => gg.SubGenres).ToListAsync();
     }
 
-    public async Task<List<Genre>> GetSubGenresByParentId(int genreId)
+    public async Task<List<Genre>> GetSubGenresByParentIdAsync(int genreId)
     {
         var parentGenre = await _context.Genres.Where(g => g.Id == genreId).FirstAsync();
         var subGenres = await _context.Genres.Where(g => g.ParentGenres.Contains(parentGenre)).ToListAsync();
@@ -33,7 +33,7 @@ public class GenreRepository : IGenreRepository
         return genre;
     }
 
-    public async Task CreateGenreParentChildRelationship(int parentId, int childId)
+    public async Task CreateGenreParentChildRelationshipAsync(int parentId, int childId)
     {
         Genre parentGenre = await _context.Genres.Where(g => g.Id == parentId).FirstAsync();
 
