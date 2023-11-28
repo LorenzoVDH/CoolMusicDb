@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LorenzoVDH.CoolMusicDb.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+// [Route("[controller]")]
 public class AlbumController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -24,7 +24,7 @@ public class AlbumController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("All")]
+    [HttpGet("Albums")]
     public async Task<IActionResult> GetAllAlbums()
     {
         List<Album> albums = await _mediator.Send(new GetAllAlbumsQuery());
@@ -37,7 +37,7 @@ public class AlbumController : ControllerBase
         return Ok(albumDTOs);
     }
 
-    [HttpGet]
+    [HttpGet("Album/{albumId}")]
     public async Task<IActionResult> GetAlbumById(int albumId)
     {
         var album = await _mediator.Send(new GetAlbumByIdQuery(albumId));
@@ -50,7 +50,7 @@ public class AlbumController : ControllerBase
         return Ok(albumDTO);
     }
 
-    [HttpGet("ByArtist")]
+    [HttpGet("Albums/ByArtist/{artistId}")]
     public async Task<IActionResult> GetAlbumsByArtist(int artistId)
     {
         List<Album> albums = await _mediator.Send(new GetAlbumsByArtistQuery(artistId));
@@ -63,7 +63,7 @@ public class AlbumController : ControllerBase
         return Ok(albumDTOs);
     }
 
-    [HttpPost]
+    [HttpPost("Album")]
     public async Task<IActionResult> CreateAlbum(AlbumCreateDTO album)
     {
         if (!ModelState.IsValid)
@@ -88,21 +88,18 @@ public class AlbumController : ControllerBase
         }
     }
 
-    [HttpPost("Artist")]
-    public async Task<IActionResult> AddArtistToAlbum(AlbumArtistRelationshipDTO albumArtistRelationshipDto)
+    [HttpPost("Album/{albumId}/Artist/{artistId}")]
+    public async Task<IActionResult> AddArtistToAlbum(int albumId, int artistId)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         try
         {
-            if (albumArtistRelationshipDto == null)
-                return BadRequest("No albumArtistRelationship provided   ");
+            await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumId,
+                                                                          artistId));
 
-            await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumArtistRelationshipDto.albumId,
-                                                                          albumArtistRelationshipDto.artistId));
-
-            return Ok($"Artist {albumArtistRelationshipDto.artistId} has been added to the album {albumArtistRelationshipDto.albumId}");
+            return Ok($"Artist {artistId} has been added to the album {albumId}");
         }
         catch (Exception ex)
         {
@@ -110,21 +107,18 @@ public class AlbumController : ControllerBase
         }
     }
 
-    [HttpDelete("Artist")]
-    public async Task<IActionResult> RemoveArtistFromAlbum(AlbumArtistRelationshipDTO albumArtistRelationshipDto)
+    [HttpDelete("Album/{albumId}/Artist/{artistId}")]
+    public async Task<IActionResult> RemoveArtistFromAlbum(int albumId, int artistId)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         try
         {
-            if (albumArtistRelationshipDto == null)
-                return BadRequest("No albumArtistRelationship provided   ");
+            await _mediator.Send(new RemoveArtistFromAlbumCommand(artistId,
+                                                                  albumId));
 
-            await _mediator.Send(new RemoveArtistFromAlbumCommand(albumArtistRelationshipDto.artistId,
-                                                                  albumArtistRelationshipDto.albumId));
-
-            return Ok($"Artist {albumArtistRelationshipDto.artistId} has been removed from the album {albumArtistRelationshipDto.albumId}");
+            return Ok($"Artist {artistId} has been removed from the album {albumId}");
         }
         catch (Exception ex)
         {
@@ -132,7 +126,7 @@ public class AlbumController : ControllerBase
         }
     }
 
-    [HttpPut]
+    [HttpPut("Album")]
     public async Task<IActionResult> UpdateAlbum(AlbumUpdateDTO albumInDto)
     {
         if (!ModelState.IsValid)
@@ -155,7 +149,7 @@ public class AlbumController : ControllerBase
         }
     }
 
-    [HttpDelete]
+    [HttpDelete("Album/{albumId}")]
     public async Task<IActionResult> DeleteAlbum(int albumId)
     {
         try
