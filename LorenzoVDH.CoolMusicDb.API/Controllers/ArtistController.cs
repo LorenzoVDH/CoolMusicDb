@@ -24,16 +24,23 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
         }
 
         [HttpGet("Artists")]
-        public async Task<IActionResult> GetAllArtists()
+        public async Task<IActionResult> GetAllArtists(int pageIndex = 0, int pageSize = 5)
         {
-            List<Artist> artists = await _mediator.Send(new GetAllArtistsQuery());
+            List<Artist> artists = await _mediator.Send(new GetAllArtistsQuery(pageIndex, pageSize));
+            var totalArtists = await _mediator.Send(new GetTotalArtistCountQuery());
 
             if (artists.Count == 0)
                 return NoContent();
 
             List<ArtistOverviewDTO> artistDTOs = _mapper.Map<List<ArtistOverviewDTO>>(artists);
 
-            return Ok(artistDTOs);
+            var returnObject = new
+            {
+                Artists = artistDTOs,
+                Total = totalArtists
+            };
+
+            return Ok(returnObject);
         }
 
         [HttpGet("Artist/{artistId}")]

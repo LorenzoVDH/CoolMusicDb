@@ -4,7 +4,8 @@ namespace LorenzoVDH.CoolMusicDb.Application.Interfaces.Repositories
 {
     public interface IArtistRepository
     {
-        Task<List<Artist>> GetAllArtistsAsync();
+        Task<int> GetTotalArtistCountAsync();
+        Task<List<Artist>> GetAllArtistsAsync(int pageIndex, int pageSize);
         Task<Artist> CreateArtistAsync(Artist artist);
         Task<Artist?> GetArtistByIdAsync(int artistId);
     }
