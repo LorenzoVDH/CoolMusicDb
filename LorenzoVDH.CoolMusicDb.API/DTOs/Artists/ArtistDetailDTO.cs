@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using LorenzoVDH.CoolMusicDb.API.DTOs.Albums;
 
 namespace LorenzoVDH.CoolMusicDb.API.DTOs.Artists
 {
@@ -11,5 +12,6 @@ namespace LorenzoVDH.CoolMusicDb.API.DTOs.Artists
         public string? Description { get; set; }
         public DateOnly? DateOfBirth { get; set; }
         public string? CountryCode { get; set; }
+        public List<AlbumSimpleDTO>? Albums { get; set; }
     }
 }

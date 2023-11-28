@@ -23,6 +23,7 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
             var startIndex = pageIndex * pageSize;
 
             var albums = await _context.Albums.Include(alb => alb.Artists)
+                                              .OrderBy(alb => alb.Id)
                                               .Skip(startIndex)
                                               .Take(pageSize)
                                               .ToListAsync();

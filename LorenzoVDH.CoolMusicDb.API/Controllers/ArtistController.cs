@@ -10,7 +10,6 @@ using LorenzoVDH.CoolMusicDb.API.DTOs.Artists;
 namespace LorenzoVDH.CoolMusicDb.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class ArtistController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -24,7 +23,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             _logger = logger;
         }
 
-        [HttpGet("All")]
+        [HttpGet("Artists")]
         public async Task<IActionResult> GetAllArtists()
         {
             List<Artist> artists = await _mediator.Send(new GetAllArtistsQuery());
@@ -37,8 +36,21 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             return Ok(artistDTOs);
         }
 
+        [HttpGet("Artist/{artistId}")]
+        public async Task<IActionResult> GetArtistByIdAsync(int artistId)
+        {
+            var artist = await _mediator.Send(new GetArtistByIdQuery(artistId));
+
+            if (artist == null)
+                return NoContent();
+
+            var artistDTO = _mapper.Map<ArtistDetailDTO>(artist);
+
+            return Ok(artistDTO);
+        }
+
         //Create
-        [HttpPost]
+        [HttpPost("Artist")]
         public async Task<IActionResult> CreateArtist([FromBody] ArtistCreateDTO artist)
         {
             if (!ModelState.IsValid)
