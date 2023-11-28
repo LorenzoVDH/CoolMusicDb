@@ -108,8 +108,8 @@ public class AlbumController : ControllerBase
             if (albumArtistRelationshipDto == null)
                 return BadRequest("No albumArtistRelationship provided   ");
 
-            await _mediator.Send(new RemoveArtistFromAlbumCommand(albumArtistRelationshipDto.albumId,
-                                                                  albumArtistRelationshipDto.artistId));
+            await _mediator.Send(new RemoveArtistFromAlbumCommand(albumArtistRelationshipDto.artistId,
+                                                                  albumArtistRelationshipDto.albumId));
 
             return Ok($"Artist {albumArtistRelationshipDto.artistId} has been removed from the album {albumArtistRelationshipDto.albumId}");
         }
