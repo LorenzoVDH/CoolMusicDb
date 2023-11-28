@@ -99,6 +99,21 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
         //Update
 
         //Delete
+        [HttpDelete("Artist/{artistId}")]
+        public async Task<IActionResult> DeleteArtist(int artistId)
+        {
+            try
+            {
+                await _mediator.Send(new DeleteArtistCommand(artistId));
+
+                return Ok($"Artist {artistId} has been successfully deleted.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occured while removing the Artist: {ex.Message}");
+            }
+        }
+
         [HttpDelete("Artist/{artistId}/Album/{albumId}")]
         public async Task<IActionResult> RemoveAlbumFromArtist(int artistId, int albumId)
         {
