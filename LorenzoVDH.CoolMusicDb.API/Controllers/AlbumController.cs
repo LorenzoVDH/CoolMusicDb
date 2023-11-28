@@ -103,8 +103,7 @@ public class AlbumController : ControllerBase
 
         try
         {
-            await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumId,
-                                                                          artistId));
+            await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumId, artistId));
 
             return Ok($"Artist {artistId} has been added to the album {albumId}");
         }
@@ -122,8 +121,7 @@ public class AlbumController : ControllerBase
 
         try
         {
-            await _mediator.Send(new RemoveArtistFromAlbumCommand(artistId,
-                                                                  albumId));
+            await _mediator.Send(new RemoveArtistFromAlbumCommand(artistId, albumId));
 
             return Ok($"Artist {artistId} has been removed from the album {albumId}");
         }

@@ -6,6 +6,7 @@ using LorenzoVDH.CoolMusicDb.API.DTOs;
 using LorenzoVDH.CoolMusicDb.Application.Features.Artists.Queries;
 using LorenzoVDH.CoolMusicDb.Application.Features.Artists.Commands;
 using LorenzoVDH.CoolMusicDb.API.DTOs.Artists;
+using LorenzoVDH.CoolMusicDb.Application.Features.Albums.Commands;
 
 namespace LorenzoVDH.CoolMusicDb.API.Controllers
 {
@@ -61,15 +62,10 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
         public async Task<IActionResult> CreateArtist([FromBody] ArtistCreateDTO artist)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             try
             {
-                if (artist == null)
-                    return BadRequest("No artist provided");
-
                 var artistToCreate = _mapper.Map<Artist>(artist);
                 var createdArtist = await _mediator.Send(new CreateArtistCommand(artistToCreate));
                 var dto = _mapper.Map<ArtistDetailDTO>(createdArtist);
@@ -82,9 +78,44 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             }
         }
 
+        [HttpPost("Artist/{artistId}/Album/{albumId}")]
+        public async Task<IActionResult> AddAlbumToArtist(int albumId, int artistId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumId, artistId));
+
+                return Ok($"Album {albumId} has been added to artist {artistId}");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occured while creating the Artist-Album relationship: {ex.Message}");
+            }
+        }
+
         //Update
 
         //Delete
+        [HttpDelete("Artist/{artistId}/Album/{albumId}")]
+        public async Task<IActionResult> RemoveAlbumFromArtist(int artistId, int albumId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                await _mediator.Send(new RemoveArtistFromAlbumCommand(artistId, albumId));
+
+                return Ok($"Album {albumId} has been removed from artist {artistId}");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occured while removing the Album from the Artist: {ex.Message}");
+            }
+        }
 
     }
 }
