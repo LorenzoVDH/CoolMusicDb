@@ -52,5 +52,11 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
             _context.Artists.Remove(artistToDelete);
             await _context.SaveChangesAsync();
         }
+
+        public async Task UpdateArtistAsync(Artist artist)
+        {
+            _context.Artists.Update(artist);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -139,9 +139,6 @@ public class AlbumController : ControllerBase
 
         try
         {
-            if (albumInDto == null)
-                return BadRequest("No album provided");
-
             var albumToUpdate = _mapper.Map<Album>(albumInDto);
             var updatedAlbum = await _mediator.Send(new UpdateAlbumCommand(albumToUpdate));
             var albumOutDto = _mapper.Map<AlbumDetailDTO>(updatedAlbum);

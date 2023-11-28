@@ -132,5 +132,25 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             }
         }
 
+        [HttpPut("Artist")]
+        public async Task<IActionResult> UpdateArtist(ArtistUpdateDTO artistInDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var artistToUpdate = _mapper.Map<Artist>(artistInDto);
+                var updatedArtist = await _mediator.Send(new UpdateArtistCommand(artistToUpdate));
+                var artistOutDto = _mapper.Map<ArtistDetailDTO>(updatedArtist);
+
+                return Ok(artistOutDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occured while updating the artist: {ex.Message}");
+            }
+        }
+
     }
 }
