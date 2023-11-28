@@ -14,7 +14,10 @@ public class UpdateAlbumHandler : IRequestHandler<UpdateAlbumCommand, Album>
     }
     public async Task<Album> Handle(UpdateAlbumCommand command, CancellationToken cancellationToken)
     {
-        return await _albumRepository.UpdateAlbumAsync(command.Album);
+        //First update the album 
+        await _albumRepository.UpdateAlbumAsync(command.Album);
+        //Retrieve the same album after the update in order to include all the artists 
+        return await _albumRepository.GetAlbumByIdAsync(command.Album.Id);
     }
 }
 

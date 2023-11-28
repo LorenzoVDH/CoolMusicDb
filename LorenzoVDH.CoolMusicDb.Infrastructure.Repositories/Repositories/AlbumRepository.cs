@@ -33,6 +33,11 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
             return albums;
         }
 
+        public async Task<Album> GetAlbumByIdAsync(int albumId)
+        {
+            return await _context.Albums.Where(alb => alb.Id == albumId).Include(alb => alb.Artists).FirstAsync();
+        }
+
         public async Task<Album> CreateAlbumAsync(Album album)
         {
             _context.Albums.Add(album);
@@ -56,12 +61,10 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Album> UpdateAlbumAsync(Album album)
+        public async Task UpdateAlbumAsync(Album album)
         {
             _context.Albums.Update(album);
             await _context.SaveChangesAsync();
-
-            return album;
         }
 
         public async Task DeleteAlbumAsync(int albumId)
