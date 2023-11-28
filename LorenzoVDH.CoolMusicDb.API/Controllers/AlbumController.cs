@@ -25,16 +25,23 @@ public class AlbumController : ControllerBase
     }
 
     [HttpGet("Albums")]
-    public async Task<IActionResult> GetAllAlbums()
+    public async Task<IActionResult> GetAllAlbums(int pageIndex = 0, int pageSize = 5)
     {
-        List<Album> albums = await _mediator.Send(new GetAllAlbumsQuery());
+        List<Album> albums = await _mediator.Send(new GetAllAlbumsQuery(pageIndex, pageSize));
+        var totalAlbums = await _mediator.Send(new GetTotalAlbumCountQuery());
 
         if (albums.Count == 0)
             return NoContent();
 
         List<AlbumOverviewDTO> albumDTOs = _mapper.Map<List<AlbumOverviewDTO>>(albums);
 
-        return Ok(albumDTOs);
+        var returnObject = new
+        {
+            Albums = albumDTOs,
+            Total = totalAlbums
+        };
+
+        return Ok(returnObject);
     }
 
     [HttpGet("Album/{albumId}")]

@@ -16,7 +16,7 @@ namespace LorenzoVDH.CoolMusicDb.Application.Features.Albums.Handlers
 
         public async Task<List<Album>> Handle(GetAllAlbumsQuery query, CancellationToken cancellationToken)
         {
-            return await _albumRepository.GetAllAlbumsAsync();
+            return await _albumRepository.GetAllAlbumsAsync(query.PageIndex, query.PageSize);
         }
     }
 }

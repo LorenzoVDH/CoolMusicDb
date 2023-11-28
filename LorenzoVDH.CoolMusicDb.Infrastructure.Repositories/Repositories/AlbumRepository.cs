@@ -13,12 +13,19 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.Repositories
             _context = context;
         }
 
-        public async Task<List<Album>> GetAllAlbumsAsync()
+        public async Task<int> GetTotalAlbumCountAsync()
         {
-            var albums =
-                await _context.Albums
-                    .Include(alb => alb.Artists)
-                    .ToListAsync();
+            return await _context.Albums.CountAsync();
+        }
+
+        public async Task<List<Album>> GetAllAlbumsAsync(int pageIndex, int pageSize)
+        {
+            var startIndex = pageIndex * pageSize;
+
+            var albums = await _context.Albums.Include(alb => alb.Artists)
+                                              .Skip(startIndex)
+                                              .Take(pageSize)
+                                              .ToListAsync();
 
             return albums;
         }
