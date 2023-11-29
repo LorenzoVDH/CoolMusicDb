@@ -17,7 +17,7 @@ public class UpdateAlbumHandler : IRequestHandler<UpdateAlbumCommand, Album>
         //First update the album 
         await _albumRepository.UpdateAlbumAsync(command.Album);
         //Retrieve the same album after the update in order to include all the artists 
-        return await _albumRepository.GetAlbumByIdAsync(command.Album.Id);
+        return command.Album;
     }
 }
 

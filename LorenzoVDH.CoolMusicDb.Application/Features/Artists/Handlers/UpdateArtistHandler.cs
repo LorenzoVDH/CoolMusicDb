@@ -15,6 +15,6 @@ public class UpdateArtistHandler : IRequestHandler<UpdateArtistCommand, Artist>
     public async Task<Artist> Handle(UpdateArtistCommand command, CancellationToken cancellationToken)
     {
         await _artistRepository.UpdateArtistAsync(command.Artist);
-        return await _artistRepository.GetArtistByIdAsync(command.Artist.Id);
+        return command.Artist;
     }
 }

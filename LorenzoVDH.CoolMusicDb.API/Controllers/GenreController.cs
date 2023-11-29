@@ -123,4 +123,25 @@ public class GenreController : ControllerBase
             return StatusCode(500, $"An error occured while deleting the parent/child relationship between genres {parentId} and {childId}: {ex.Message}");
         }
     }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateGenre(GenreUpdateDTO genreInDto)
+    {
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        try
+        {
+            var genreToUpdate = _mapper.Map<Genre>(genreInDto);
+            var updatedGenre = await _mediator.Send(new UpdateGenreCommand(genreToUpdate));
+            var genreOutDto = _mapper.Map<GenreUpdateDTO>(updatedGenre);
+
+            return Ok(genreOutDto);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while updating the genre: {ex.Message}");
+        }
+    }
 }

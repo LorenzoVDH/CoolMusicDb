@@ -76,4 +76,10 @@ public class GenreRepository : IGenreRepository
         parentGenre.SubGenres.Remove(childGenre);
         await _context.SaveChangesAsync();
     }
+
+    public async Task UpdateGenreAsync(Genre genre)
+    {
+        _context.Genres.Update(genre);
+        await _context.SaveChangesAsync();
+    }
 }
