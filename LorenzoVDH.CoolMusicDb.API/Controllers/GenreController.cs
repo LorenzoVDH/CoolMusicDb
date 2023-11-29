@@ -36,7 +36,7 @@ public class GenreController : ControllerBase
         return Ok(genreDTOs);
     }
 
-    [HttpGet("SubGenresByParent")]
+    [HttpGet("{genreId}/SubGenres")]
     public async Task<IActionResult> GetSubGenresByParentId(int genreId)
     {
         List<Genre> genres = await _mediator.Send(new GetSubGenresByParentQuery(genreId));
@@ -74,8 +74,8 @@ public class GenreController : ControllerBase
         }
     }
 
-    [HttpPost("ParentChildRelationship")]
-    public async Task<IActionResult> CreateGenreParentChildRelationship([FromBody] GenreCreateParentChildRelationshipDTO genreParentChildRelationship)
+    [HttpPost("Parent/{parentId}/Child/{childId}")]
+    public async Task<IActionResult> CreateGenreParentChildRelationship(int parentId, int childId)
     {
         if (!ModelState.IsValid)
         {
@@ -84,18 +84,43 @@ public class GenreController : ControllerBase
 
         try
         {
-            if (genreParentChildRelationship == null)
-                return BadRequest("No Genre Parent-Child relationship provided");
+            await _mediator.Send(new CreateGenreParentChildRelationshipCommand(parentId, childId));
 
-            await _mediator.Send(new CreateGenreParentChildRelationshipCommand(genreParentChildRelationship.ParentId,
-                                                                               genreParentChildRelationship.ChildId));
-
-            return Ok($"Genre Parent-Child relationship between parent {genreParentChildRelationship.ParentId}" +
-                      $"and child {genreParentChildRelationship.ChildId} created succesfully!");
+            return Ok($"Genre Parent-Child relationship between parent {parentId} and child {childId} created succesfully!");
         }
         catch (Exception ex)
         {
             return StatusCode(500, $"An error occurred while creating the genre relationship: {ex.Message}");
+        }
+    }
+
+    [HttpDelete("{genreId}")]
+    public async Task<IActionResult> DeleteGenre(int genreId)
+    {
+        try
+        {
+            await _mediator.Send(new DeleteGenreCommand(genreId));
+
+            return Ok($"Genre {genreId} was deleted");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while deleting genre {genreId}: {ex.Message}");
+        }
+    }
+
+    [HttpDelete("Parent/{parentId}/Child/{childId}")]
+    public async Task<IActionResult> DeleteGenreParentChildRelationship(int parentId, int childId)
+    {
+        try
+        {
+            await _mediator.Send(new DeleteGenreParentChildRelationshipCommand(parentId, childId));
+
+            return Ok($"Genre relationship between genre {parentId} and genre {childId} has been deleted");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while deleting the parent/child relationship between genres {parentId} and {childId}: {ex.Message}");
         }
     }
 }

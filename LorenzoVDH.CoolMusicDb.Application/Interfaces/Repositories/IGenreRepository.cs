@@ -8,4 +8,6 @@ public interface IGenreRepository
     Task<List<Genre>> GetSubGenresByParentIdAsync(int genreId);
     Task<Genre> CreateGenreAsync(Genre genre);
     Task CreateGenreParentChildRelationshipAsync(int parentGenreId, int childGenreId);
+    Task DeleteGenreAsync(int genreId);
+    Task DeleteGenreParentChildRelationshipAsync(int parentId, int childId);
 }
