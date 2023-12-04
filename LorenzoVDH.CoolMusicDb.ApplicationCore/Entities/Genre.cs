@@ -32,4 +32,18 @@ public class Genre : Entity
             _countryCodes = value?.ConvertAll(cc => cc.ToUpper());
         }
     }
+
+    //This Property Field will be changed to be of type Track in the future 
+    private string? _spotifyTrackPreviewId;
+    public string? SpotifyTrackPreviewId
+    {
+        get
+        {
+            return _spotifyTrackPreviewId;
+        }
+        set
+        {
+            _spotifyTrackPreviewId = value;
+        }
+    }
 }

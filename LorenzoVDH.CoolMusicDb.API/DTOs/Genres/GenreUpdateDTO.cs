@@ -7,4 +7,5 @@ public class GenreUpdateDTO
     public DateOnly? DateOfOrigin { get; set; }
     public string? Description { get; set; }
     public List<string>? CountryCodes { get; set; }
+    public string? SpotifyTrackPreviewId { get; set; }
 }
