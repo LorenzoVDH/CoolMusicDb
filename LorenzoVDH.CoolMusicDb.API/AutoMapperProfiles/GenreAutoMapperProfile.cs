@@ -26,94 +26,127 @@ public class GenreAutoMapperProfile : Profile
             {
                 return "Pre-Millennium";
             }
-            else if (year >= 1000 && year < 1100)
+            else if (year < 1100)
             {
                 return "11th Century";
             }
-            else if (year >= 1100 && year < 1200)
+            else if (year < 1200)
             {
                 return "12th Century";
             }
-            else if (year >= 1200 && year < 1300)
+            else if (year < 1300)
             {
                 return "13th Century";
             }
-            else if (year >= 1300 && year < 1400)
+            else if (year < 1400)
             {
                 return "14th Century";
             }
-            else if (year >= 1400 && year < 1500)
+            else if (year < 1500)
             {
                 return "15th Century";
             }
-            else if (year >= 1500 && year < 1600)
+            else if (year < 1600)
             {
                 return "16th Century";
             }
-            else if (year >= 1600 && year < 1700)
+            else if (year < 1700)
             {
                 return "17th Century";
             }
-            else if (year >= 1700 && year < 1800)
+            else if (year < 1800)
             {
                 return "18th Century";
             }
-            else if (year >= 1800 && year < 1900)
+            else if (year < 1900)
             {
                 return "19th Century";
             }
-            else if (year >= 1900 && year < 1910)
+            else if (year < 1910)
             {
                 return "1900s (early)";
             }
-            else if (year >= 1910 && year < 1920)
+            else if (year < 1920)
             {
                 return "1910s";
             }
-            else if (year >= 1920 && year < 1930)
+            else if (year < 1930)
             {
                 return "1920s";
             }
-            else if (year >= 1930 && year < 1940)
+            else if (year < 1940)
             {
                 return "1930s";
             }
-            else if (year >= 1940 && year < 1950)
+            else if (year < 1950)
             {
                 return "1940s";
             }
-            else if (year >= 1950 && year < 1960)
+            else if (year < 1955)
             {
-                return "50s";
+                return "early 50s";
             }
-            else if (year >= 1960 && year < 1970)
+            else if (year < 1960)
             {
-                return "60s";
+                return "mid 50s";
             }
-            else if (year >= 1970 && year < 1980)
+            else if (year < 1965)
             {
-                return "70s";
+                return "early 60s";
             }
-            else if (year >= 1980 && year < 1990)
+            else if (year < 1970)
             {
-                return "80s";
+                return "mid 60s";
             }
-            else if (year >= 1990 && year < 2000)
+            else if (year < 1975)
             {
-                return "90s";
+                return "early 70s";
             }
-            else if (year >= 2000 && year < 2010)
+            else if (year < 1980)
             {
-                return "00s";
+                return "mid 70s";
             }
-            else if (year >= 2010 && year < 2020)
+            else if (year < 1985)
             {
-                return "2010s";
+                return "early 80s";
             }
-            else if (year >= 2020 && year < 2030)
+            else if (year < 1990)
             {
-                return "2020s";
+                return "mid 80s";
             }
+            else if (year < 1995)
+            {
+                return "early 90s";
+            }
+            else if (year < 2000)
+            {
+                return "mid 90s";
+            }
+            else if (year < 2005)
+            {
+                return "early 2000s";
+            }
+            else if (year < 2010)
+            {
+                return "mid 2000s";
+            }
+            else if (year < 2015)
+            {
+                return "early 2010s";
+            }
+            else if (year < 2020)
+            {
+                return "mid 2010s";
+            }
+            else if (year < 2025)
+            {
+                return "early 2020s";
+            }
+            else if (year < 2030)
+            {
+                return "mid 2020s";
+            }
+
         }
 
         return null;

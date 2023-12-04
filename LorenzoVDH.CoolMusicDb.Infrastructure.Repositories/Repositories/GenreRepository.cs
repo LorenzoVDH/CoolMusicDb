@@ -15,7 +15,7 @@ public class GenreRepository : IGenreRepository
 
     public async Task<List<Genre>> GetGenresAsync()
     {
-        return await _context.Genres.OrderBy(g => g.Id).Include(g => g.SubGenres).ToListAsync();
+        return await _context.Genres.OrderBy(g => g.Id).Where(g => g.ParentGenres.Count == 0).Include(g => g.SubGenres).ToListAsync();
     }
 
     public async Task<List<Genre>> GetMainGenresAsync()
