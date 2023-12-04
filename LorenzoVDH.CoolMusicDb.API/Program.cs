@@ -21,6 +21,18 @@ builder.Services.AddSwaggerGen(options =>
 );
 builder.Services.AddAutoMapper(typeof(ArtistAutoMapperProfile).Assembly);
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyMarker).Assembly));
+builder.Services.AddCors(options =>
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy
+                .SetIsOriginAllowed(origin => true)
+                .WithOrigins("http://localhost:3001")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
+    )
+);
 
 //Projects 
 builder.Services.AddApplication();
@@ -37,6 +49,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 
