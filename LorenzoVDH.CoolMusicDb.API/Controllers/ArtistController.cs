@@ -11,6 +11,7 @@ using LorenzoVDH.CoolMusicDb.Application.Features.Albums.Commands;
 namespace LorenzoVDH.CoolMusicDb.API.Controllers
 {
     [ApiController]
+    [Route("Artists")]
     public class ArtistController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -24,7 +25,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             _logger = logger;
         }
 
-        [HttpGet("Artists")]
+        [HttpGet]
         public async Task<IActionResult> GetAllArtists(int pageIndex = 0, int pageSize = 5)
         {
             List<Artist> artists = await _mediator.Send(new GetAllArtistsQuery(pageIndex, pageSize));
@@ -44,7 +45,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             return Ok(returnObject);
         }
 
-        [HttpGet("Artist/{artistId}")]
+        [HttpGet("{artistId}")]
         public async Task<IActionResult> GetArtistByIdAsync(int artistId)
         {
             var artist = await _mediator.Send(new GetArtistByIdQuery(artistId));
@@ -58,7 +59,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
         }
 
         //Create
-        [HttpPost("Artist")]
+        [HttpPost]
         public async Task<IActionResult> CreateArtist([FromBody] ArtistCreateDTO artist)
         {
             if (!ModelState.IsValid)
@@ -78,7 +79,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             }
         }
 
-        [HttpPost("Artist/{artistId}/Album/{albumId}")]
+        [HttpPost("{artistId}/Album/{albumId}")]
         public async Task<IActionResult> AddAlbumToArtist(int albumId, int artistId)
         {
             if (!ModelState.IsValid)
@@ -99,7 +100,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
         //Update
 
         //Delete
-        [HttpDelete("Artist/{artistId}")]
+        [HttpDelete("{artistId}")]
         public async Task<IActionResult> DeleteArtist(int artistId)
         {
             try
@@ -114,7 +115,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             }
         }
 
-        [HttpDelete("Artist/{artistId}/Album/{albumId}")]
+        [HttpDelete("{artistId}/Album/{albumId}")]
         public async Task<IActionResult> RemoveAlbumFromArtist(int artistId, int albumId)
         {
             if (!ModelState.IsValid)
@@ -132,7 +133,7 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             }
         }
 
-        [HttpPut("Artist")]
+        [HttpPut]
         public async Task<IActionResult> UpdateArtist(ArtistUpdateDTO artistInDto)
         {
             if (!ModelState.IsValid)

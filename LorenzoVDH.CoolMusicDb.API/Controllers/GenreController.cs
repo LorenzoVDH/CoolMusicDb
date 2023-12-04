@@ -4,12 +4,13 @@ using LorenzoVDH.CoolMusicDb.Application.Features.Genres.Commands;
 using LorenzoVDH.CoolMusicDb.Application.Features.Genres.Queries;
 using LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LorenzoVDH.CoolMusicDb.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("Genres")]
 public class GenreController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -23,10 +24,11 @@ public class GenreController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("MainGenres")]
-    public async Task<IActionResult> GetMainGenres()
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllGenres()
     {
-        List<Genre> genres = await _mediator.Send(new GetMainGenresQuery());
+        List<Genre> genres = await _mediator.Send(new GetAllGenresQuery());
 
         if (genres.Count == 0)
             return NoContent();
@@ -36,18 +38,32 @@ public class GenreController : ControllerBase
         return Ok(genreDTOs);
     }
 
-    [HttpGet("{genreId}/SubGenres")]
-    public async Task<IActionResult> GetSubGenresByParentId(int genreId)
-    {
-        List<Genre> genres = await _mediator.Send(new GetSubGenresByParentQuery(genreId));
 
-        if (genres.Count == 0)
-            return NoContent();
+    // [HttpGet("MainGenres")]
+    // public async Task<IActionResult> GetMainGenres()
+    // {
+    //     List<Genre> genres = await _mediator.Send(new GetMainGenresQuery());
 
-        List<GenreOverviewDTO> genreDTOs = _mapper.Map<List<GenreOverviewDTO>>(genres);
+    //     if (genres.Count == 0)
+    //         return NoContent();
 
-        return Ok(genreDTOs);
-    }
+    //     List<GenreOverviewDTO> genreDTOs = _mapper.Map<List<GenreOverviewDTO>>(genres);
+
+    //     return Ok(genreDTOs);
+    // }
+
+    // [HttpGet("{genreId}/SubGenres")]
+    // public async Task<IActionResult> GetSubGenresByParentId(int genreId)
+    // {
+    //     List<Genre> genres = await _mediator.Send(new GetSubGenresByParentQuery(genreId));
+
+    //     if (genres.Count == 0)
+    //         return NoContent();
+
+    //     List<GenreOverviewDTO> genreDTOs = _mapper.Map<List<GenreOverviewDTO>>(genres);
+
+    //     return Ok(genreDTOs);
+    // }
 
     [HttpPost]
     public async Task<IActionResult> CreateGenre([FromBody] GenreCreateDTO genre)

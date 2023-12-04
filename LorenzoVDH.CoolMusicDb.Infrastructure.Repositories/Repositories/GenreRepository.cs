@@ -13,6 +13,11 @@ public class GenreRepository : IGenreRepository
         _context = context;
     }
 
+    public async Task<List<Genre>> GetGenresAsync()
+    {
+        return await _context.Genres.OrderBy(g => g.Id).Include(g => g.SubGenres).ToListAsync();
+    }
+
     public async Task<List<Genre>> GetMainGenresAsync()
     {
         return await _context.Genres.Where(g => g.ParentGenres.Count == 0).OrderBy(alb => alb.Id).Include(gg => gg.SubGenres).ToListAsync();
