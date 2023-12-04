@@ -11,6 +11,6 @@ public class GenreOverviewDTO
     public string? Description { get; set; }
     //public List<string>? Popular { get; set; }
     //public string? SpotifyTrackPreviewId { get; set; }
-    //public List<string>? Countries { get; set; }
+    public List<string>? CountryCodes { get; set; }
     public List<GenreOverviewDTO> Children { get; set; } = new();
 }

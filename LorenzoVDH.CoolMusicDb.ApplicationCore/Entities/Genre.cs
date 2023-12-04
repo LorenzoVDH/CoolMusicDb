@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
 
 public class Genre : Entity
@@ -17,4 +19,17 @@ public class Genre : Entity
 
     private List<Genre> _subGenres = new();
     public List<Genre> SubGenres { get => _subGenres; set => _subGenres = value; }
+
+    private List<string>? _countryCodes;
+    public List<string>? CountryCodes
+    {
+        get
+        {
+            return _countryCodes;
+        }
+        set
+        {
+            _countryCodes = value?.ConvertAll(cc => cc.ToUpper());
+        }
+    }
 }
