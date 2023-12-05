@@ -10,8 +10,8 @@ var dbContextOptions = new DbContextOptionsBuilder<CoolMusicDbContext>()
     .Options;
 using var dbContext = new CoolMusicDbContext(dbContextOptions);
 
-//ArtistSeeder.SeedArtistsWithAlbums(dbContext); 
-//GenreSeeder.SeedGenresWithChildren(dbContext);
+ArtistSeeder.SeedArtistsWithAlbums(dbContext);
+GenreSeeder.SeedGenresWithChildren(dbContext);
 
 dbContext.SaveChanges();
 
