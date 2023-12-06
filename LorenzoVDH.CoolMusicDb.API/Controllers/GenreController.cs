@@ -162,7 +162,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpPost("{genreId}/AddPopularArtist/{popularArtistId}")]
-    public async Task<IActionResult> AddPopularArtistToGenre(int genreId, int popularArtistId)
+    public async Task<IActionResult> AddPopularArtistToGenre(int popularArtistId, int genreId)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -177,6 +177,25 @@ public class GenreController : ControllerBase
         {
             return StatusCode(500, $"An error occured while trying to add the popular artist with id {popularArtistId} " +
                                    $"to Genre with id {genreId}: {ex.Message}");
+        }
+    }
+
+    [HttpDelete("{genreId}/RemovePopularArtist/{popularArtistId}")]
+    public async Task<IActionResult> RemovePopularArtistFromGenre(int popularArtistId, int genreId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        try
+        {
+            await _mediator.Send(new RemovePopularArtistFromGenreCommand(popularArtistId, genreId));
+
+            return Ok($"Popular artist with id {popularArtistId} has been succesfully removed from Genre with id {genreId}!");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while trying to remove the popular artist with id {popularArtistId} " +
+                                   $"from Genre with id {genreId}: {ex.Message}");
         }
     }
 }

@@ -13,4 +13,5 @@ public interface IGenreRepository
     Task DeleteGenreParentChildRelationshipAsync(int parentId, int childId);
     Task UpdateGenreAsync(Genre genre);
     Task AddPopularArtistToGenre(int popularArtistId, int genreId);
+    Task RemovePopularArtistFromGenre(int popularArtistId, int genreId);
 }

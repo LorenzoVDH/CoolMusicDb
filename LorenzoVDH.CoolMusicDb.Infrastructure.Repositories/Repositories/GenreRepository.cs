@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using LorenzoVDH.CoolMusicDb.Application.Interfaces.Repositories;
 using LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -114,6 +115,25 @@ public class GenreRepository : IGenreRepository
             genre.PopularArtists = new();
 
         genre.PopularArtists.Add(popularArtist);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task RemovePopularArtistFromGenre(int popularArtistId, int genreId)
+    {
+        Artist popularArtist = await _context.Artists.Where(a => a.Id == popularArtistId).FirstAsync();
+
+        if (popularArtist == null)
+            throw new InvalidOperationException("Artist not found!");
+
+        Genre genre = await _context.Genres.Where(g => g.Id == genreId).Include(g => g.PopularArtists).FirstAsync();
+
+        if (genre == null)
+            throw new InvalidOperationException("Genre not found!");
+
+        if (genre.PopularArtists == null || !genre.PopularArtists.Contains(popularArtist))
+            throw new InvalidOperationException("Genre does not contain this popular artist");
+
+        genre.PopularArtists.Remove(popularArtist);
         await _context.SaveChangesAsync();
     }
 }
