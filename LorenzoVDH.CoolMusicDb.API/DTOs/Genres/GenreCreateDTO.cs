@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
 
 namespace LorenzoVDH.CoolMusicDb.API.DTOs.Genres;
 

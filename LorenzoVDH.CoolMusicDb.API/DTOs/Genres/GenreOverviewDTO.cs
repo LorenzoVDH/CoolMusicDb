@@ -9,8 +9,8 @@ public class GenreOverviewDTO
     public string? Decade { get; set; }
     public DateOnly? DateOfOrigin { get; set; }
     public string? Description { get; set; }
-    //public List<string>? Popular { get; set; }
+    public List<ArtistSimpleDTO>? PopularArtists { get; set; }
     public string? SpotifyTrackPreviewId { get; set; }
     public List<string>? CountryCodes { get; set; }
-    public List<GenreOverviewDTO> Children { get; set; } = new();
+    public List<GenreOverviewDTO>? Children { get; set; }
 }

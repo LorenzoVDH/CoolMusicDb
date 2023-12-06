@@ -1,3 +1,5 @@
+using LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
+
 namespace LorenzoVDH.CoolMusicDb.API.DTOs.Genres;
 
 public class GenreUpdateDTO

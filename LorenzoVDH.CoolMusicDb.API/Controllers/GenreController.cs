@@ -160,4 +160,23 @@ public class GenreController : ControllerBase
             return StatusCode(500, $"An error occured while updating the genre: {ex.Message}");
         }
     }
+
+    [HttpPost("{genreId}/AddPopularArtist/{popularArtistId}")]
+    public async Task<IActionResult> AddPopularArtistToGenre(int genreId, int popularArtistId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        try
+        {
+            await _mediator.Send(new AddPopularArtistToGenreCommand(popularArtistId, genreId));
+
+            return Ok($"Popular artist with id {popularArtistId} has been succesfully added to Genre with id {genreId}!");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occured while trying to add the popular artist with id {popularArtistId} " +
+                                   $"to Genre with id {genreId}: {ex.Message}");
+        }
+    }
 }

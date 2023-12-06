@@ -15,7 +15,17 @@ public class GenreRepository : IGenreRepository
 
     public async Task<List<Genre>> GetGenresAsync()
     {
-        return await _context.Genres.OrderBy(g => g.Id).Where(g => g.ParentGenres.Count == 0).Include(g => g.SubGenres).ToListAsync();
+        //Get all the genres 
+        var genres = await _context.Genres
+                                   .OrderBy(g => g.Id)
+                                   .Include(g => g.SubGenres)
+                                   .Include(g => g.PopularArtists)
+                                   .ToListAsync();
+
+        //Filter out the SubGenres/ChildGenres that are not properly nested 
+        genres.RemoveAll(g => g.ParentGenres.Count != 0);
+
+        return genres;
     }
 
     public async Task<List<Genre>> GetMainGenresAsync()
@@ -40,12 +50,12 @@ public class GenreRepository : IGenreRepository
 
     public async Task CreateGenreParentChildRelationshipAsync(int parentId, int childId)
     {
-        Genre parentGenre = await _context.Genres.Where(g => g.Id == parentId).FirstAsync();
+        Genre parentGenre = await _context.Genres.Where(pg => pg.Id == parentId).Include(pg => pg.SubGenres).FirstAsync();
 
         if (parentGenre == null)
             throw new InvalidOperationException("Parent genre not found!");
 
-        Genre childGenre = await _context.Genres.Where(g => g.Id == childId).FirstAsync();
+        Genre childGenre = await _context.Genres.Where(cg => cg.Id == childId).FirstAsync();
 
         if (childGenre == null)
             throw new InvalidOperationException("Child genre not found!");
@@ -85,6 +95,25 @@ public class GenreRepository : IGenreRepository
     public async Task UpdateGenreAsync(Genre genre)
     {
         _context.Genres.Update(genre);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task AddPopularArtistToGenre(int popularArtistId, int genreId)
+    {
+        Artist popularArtist = await _context.Artists.Where(a => a.Id == popularArtistId).FirstAsync();
+
+        if (popularArtist == null)
+            throw new InvalidOperationException("Artist not found!");
+
+        Genre genre = await _context.Genres.Where(g => g.Id == genreId).Include(g => g.PopularArtists).FirstAsync();
+
+        if (genre == null)
+            throw new InvalidOperationException("Genre not found!");
+
+        if (genre.PopularArtists == null)
+            genre.PopularArtists = new();
+
+        genre.PopularArtists.Add(popularArtist);
         await _context.SaveChangesAsync();
     }
 }

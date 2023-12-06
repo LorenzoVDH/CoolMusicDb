@@ -1,4 +1,5 @@
 ﻿using LorenzoVDH.CoolMusicDb.ApplicationCore.Entities;
+using LorenzoVDH.CoolMusicDb.Infrastructure.Repositories.ModelConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories
@@ -15,6 +16,7 @@ namespace LorenzoVDH.CoolMusicDb.Infrastructure.Repositories
         {
             //Seeding is done using the DatabaseSeeder Project
             modelBuilder.ConfigureArtistsProperties();
+            modelBuilder.ConfigureGenresProperties();
 
             base.OnModelCreating(modelBuilder);
         }

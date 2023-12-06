@@ -35,6 +35,7 @@ public class Genre : Entity
 
     //This Property Field will be changed to be of type Track in the future 
     private string? _spotifyTrackPreviewId;
+
     public string? SpotifyTrackPreviewId
     {
         get
@@ -45,5 +46,12 @@ public class Genre : Entity
         {
             _spotifyTrackPreviewId = value;
         }
+    }
+
+    private List<Artist>? _popularArtists;
+    public List<Artist>? PopularArtists
+    {
+        get => _popularArtists;
+        set => _popularArtists = value;
     }
 }
