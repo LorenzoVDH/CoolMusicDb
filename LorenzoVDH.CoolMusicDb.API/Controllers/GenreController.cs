@@ -38,6 +38,18 @@ public class GenreController : ControllerBase
         return Ok(genreDTOs);
     }
 
+    [HttpGet("{genreId}")]
+    public async Task<IActionResult> GetGenreById(int genreId)
+    {
+        Genre? genre = await _mediator.Send(new GetGenreByIdQuery(genreId));
+
+        if (genre == null)
+            return NoContent();
+
+        GenreOverviewDTO genreDTO = _mapper.Map<GenreOverviewDTO>(genre);
+
+        return Ok(genreDTO);
+    }
 
     // [HttpGet("MainGenres")]
     // public async Task<IActionResult> GetMainGenres()

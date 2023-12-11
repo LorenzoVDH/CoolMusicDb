@@ -29,6 +29,11 @@ public class GenreRepository : IGenreRepository
         return genres;
     }
 
+    public async Task<Genre?> GetGenreByIdAsync(int genreId)
+    {
+        return await _context.Genres.Where(g => g.Id == genreId).Include(g => g.SubGenres).FirstAsync();
+    }
+
     public async Task<List<Genre>> GetMainGenresAsync()
     {
         return await _context.Genres.Where(g => g.ParentGenres.Count == 0).OrderBy(alb => alb.Id).Include(gg => gg.SubGenres).ToListAsync();
