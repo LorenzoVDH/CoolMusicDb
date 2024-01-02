@@ -7,15 +7,15 @@ namespace LorenzoVDH.CoolMusicDb.Application.Features.Artists.Handlers
 {
     public class GetAllArtistsHandler : IRequestHandler<GetAllArtistsQuery, List<Artist>>
     {
-        private readonly IArtistRepository _artistRepository; 
+        private readonly IArtistRepository _artistRepository;
         public GetAllArtistsHandler(IArtistRepository artistRepository)
         {
             _artistRepository = artistRepository;
         }
 
-        public Task<List<Artist>> Handle(GetAllArtistsQuery query, CancellationToken cancellationToken)
+        public async Task<List<Artist>> Handle(GetAllArtistsQuery query, CancellationToken cancellationToken)
         {
-            return _artistRepository.GetAllArtistsAsync(); 
+            return await _artistRepository.GetAllArtistsAsync(query.PageIndex, query.PageSize);
         }
     }
 }
