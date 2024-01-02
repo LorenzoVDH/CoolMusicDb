@@ -14,6 +14,7 @@ public class GenreAutoMapperProfile : Profile
         CreateMap<GenreCreateDTO, Genre>();
         CreateMap<Genre, GenreDetailDTO>();
         CreateMap<GenreUpdateDTO, Genre>().ReverseMap();
+        CreateMap<Genre, GenreSimpleDTO>();
     }
 
     private string? MapDecade(DateOnly? dateOfOrigin)

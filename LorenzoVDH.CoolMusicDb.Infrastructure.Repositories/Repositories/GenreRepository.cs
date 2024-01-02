@@ -29,6 +29,16 @@ public class GenreRepository : IGenreRepository
         return genres;
     }
 
+    public async Task<List<Genre>> GetAllGenresWithoutHierarchyAsync()
+    {
+        var genres = await _context.Genres
+                                   .OrderBy(g => g.Id)
+                                   .Include(g => g.PopularArtists)
+                                   .ToListAsync();
+
+        return genres;
+    }
+
     public async Task<Genre?> GetGenreByIdAsync(int genreId)
     {
         return await _context.Genres.Where(g => g.Id == genreId).Include(g => g.SubGenres).FirstAsync();
@@ -139,6 +149,22 @@ public class GenreRepository : IGenreRepository
             throw new InvalidOperationException("Genre does not contain this popular artist");
 
         genre.PopularArtists.Remove(popularArtist);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task SetParentChildRelationshipsForGenre(int genreId, List<int> childGenreIds)
+    {
+        Genre genre = await _context.Genres.Where(g => g.Id == genreId).Include(g => g.SubGenres).FirstAsync();
+
+        if (genre == null)
+            throw new InvalidOperationException("Genre not found!");
+
+        genre.SubGenres.Clear();
+
+        List<Genre> genresToAdd = _context.Genres.Where(g => childGenreIds.Contains(g.Id)).ToList();
+
+        genre.SubGenres.AddRange(genresToAdd);
+
         await _context.SaveChangesAsync();
     }
 }
