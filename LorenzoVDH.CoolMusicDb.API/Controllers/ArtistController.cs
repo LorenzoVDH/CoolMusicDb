@@ -58,6 +58,19 @@ namespace LorenzoVDH.CoolMusicDb.API.Controllers
             return Ok(artistDTO);
         }
 
+        [HttpGet("/Name/{searchTerm}")]
+        public async Task<IActionResult> GetArtistsByNameAsync(string searchTerm)
+        {
+            var artists = await _mediator.Send(new GetArtistsByNameQuery(searchTerm));
+
+            if (artists == null)
+                return NoContent();
+
+            var artistDTOs = _mapper.Map<List<ArtistSimpleDTO>>(artists);
+
+            return Ok(artistDTOs);
+        }
+
         //Create
         [HttpPost]
         public async Task<IActionResult> CreateArtist([FromBody] ArtistCreateDTO artist)
