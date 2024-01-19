@@ -139,9 +139,36 @@ public class AlbumController : ControllerBase
 
         try
         {
+            //AlbumInDTO converted to actual Album object 
             var albumToUpdate = _mapper.Map<Album>(albumInDto);
+            //The updated album, returned from the command 
             var updatedAlbum = await _mediator.Send(new UpdateAlbumCommand(albumToUpdate));
-            var albumOutDto = _mapper.Map<AlbumDetailDTO>(updatedAlbum);
+
+            if (albumInDto.ArtistIds != null)
+            {
+                var albumOld = await _mediator.Send(new GetAlbumByIdQuery(albumInDto.Id));
+                // Remove artists that are no longer present in the album 
+                var artistsToRemove = albumOld.Artists
+                    .Where(artist => !albumInDto.ArtistIds.Contains(artist.Id))
+                    .ToList();
+
+                foreach (var artist in artistsToRemove)
+                {
+                    await _mediator.Send(new RemoveArtistFromAlbumCommand(artist.Id, albumInDto.Id));
+                }
+
+                // Add artists that haven't been added to the album yet 
+                var artistsToAdd = albumInDto.ArtistIds
+                    .Where(artistId => !albumOld.Artists.Any(a => a.Id == artistId))
+                    .ToList();
+
+                foreach (int artistId in artistsToAdd)
+                {
+                    await _mediator.Send(new CreateAlbumArtistRelationshipCommand(albumInDto.Id, artistId));
+                }
+            }
+
+            var albumOutDto = _mapper.Map<AlbumSimpleDTO>(updatedAlbum);
 
             return Ok(albumOutDto);
         }
